@@ -1,10 +1,21 @@
-var t;
+// Функция прокрутки
 function scrollToElement(elementId) {
     var element = document.getElementById(elementId);
     if (element) {
-        element.scrollIntoView({behavior: 'smooth', block: 'start'});
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
+
+// Находим все ссылки с href="javascript:void(0)" и нужным onclick
+document.querySelectorAll('a[href="javascript:void(0)"][onclick="scrollToElement(\'regForm\')"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault();  // Отменяем стандартное поведение ссылки
+        scrollToElement('regForm'); // Прокручиваем к элементу с id "regForm"
+    });
+});
+
+var t;
+
 function i(t, i, e) {
     const a = document.querySelector(".phone-error");
     if (!i.value.trim()) return i.classList.remove("valid", "invalid"), a && (a.textContent = ""), void n(t);
